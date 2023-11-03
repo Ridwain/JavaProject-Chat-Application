@@ -1,14 +1,43 @@
-import java.net.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
 public class Server {
-    public static void main(String[] args) throws Exception{
-        ServerSocket server = new ServerSocket(2000);
-        while (true){
-            System.out.println("Waiting For Clients >>");
-            Socket socket= server.accept();
+    private ServerSocket serverSocket;
+    public Server(ServerSocket serverSocket){
+        this.serverSocket = serverSocket;
+    }
 
+    public void startServer(){
+        try{
+            while (!serverSocket.isClosed()) {
+                Socket socket = serverSocket.accept();
+                ClientHandler clientHandlers = new ClientHandler(socket);
+                Thread thread = new Thread(clientHandlers);
+                thread.start();
 
+            }
+
+        }catch(IOException e){
+            closingServer();
         }
+    }
+    public void closingServer(){
+        try{
+            if(serverSocket!=null){
+                serverSocket.close();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws IOException{
+        ServerSocket serverSocket = new ServerSocket(2000);
+        Server server = new Server(serverSocket);
+        server.startServer();
 
     }
 }

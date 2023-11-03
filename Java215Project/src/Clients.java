@@ -25,27 +25,27 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         this.setResizable(false);
 
 
-        ImageIcon defaultDp = new ImageIcon("man1.png");
+        ImageIcon defaultDp = new ImageIcon("man1.png");  //  Default Display picture
         Image dfDP = defaultDp.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         ImageIcon defaultPic = new ImageIcon(dfDP);
 
-        ImageIcon groupChatPic = new ImageIcon("icons8-facebook_messenger.png");
+        ImageIcon groupChatPic = new ImageIcon("icons8-facebook_messenger.png");  // GroupChat Pic (Messenger Type)
         Image groupChatResize = groupChatPic.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         ImageIcon groupChatImage = new ImageIcon(groupChatResize);
 
-        ImageIcon dots = new ImageIcon("dots.png");
+        ImageIcon dots = new ImageIcon("dots.png"); // Three Dots Pic
         Image dotsResize = dots.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT);
         ImageIcon i18 = new ImageIcon(dotsResize);
 
-        ImageIcon vdo = new ImageIcon("videoLogo.png");
+        ImageIcon vdo = new ImageIcon("videoLogo.png"); //Video call Logo pic
         Image vdoReset = vdo.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT);
         ImageIcon i16 = new ImageIcon(vdoReset);
 
-        ImageIcon call = new ImageIcon("call.png");
+        ImageIcon call = new ImageIcon("call.png");  // Call logo Pic
         Image callResize = call.getImage().getScaledInstance(40, 35, Image.SCALE_DEFAULT);
         ImageIcon i17 = new ImageIcon(callResize);
 
-        ImageIcon send = new ImageIcon("sends.png");
+        ImageIcon send = new ImageIcon("sends.png");  // Sends Logo Pic
 
 
         JPanel panel1 = new JPanel();
@@ -56,18 +56,18 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         JPanel panel6 = new JPanel();
         JPanel panel7 = new JPanel();
 
-        messageField = new JTextField();
+        messageField = new JTextField();   // Message field Where We Write message
         messageField.setForeground(Color.BLACK);
-        chatTextArea = new JTextArea();
-        chatTextArea.setEditable(false);
+        chatTextArea = new JTextArea();   // chatTextArea Where We Will See our sending and recieving msges
+        chatTextArea.setEditable(false);  // Not editable
 
         JButton button = new JButton();
         button.setIcon(send);
-        button.addActionListener(this);
-        messageField.addKeyListener(this);
+        button.addActionListener(this);  // I have Added Actionlistener to the button (Mouse Clicked)
+        messageField.addKeyListener(this); // I Have Added KeyListener To the Button (KeyBoard Listener)
 
-        scrollBar = new JScrollPane(chatTextArea);
-        scrollBar.setBounds(0,70,400,540);
+        scrollBar = new JScrollPane(chatTextArea);  // Added a Scroll Bar to the chatTextArea
+        scrollBar.setBounds(0,70,400,540);  // set the scroll size and position
 
 
 
@@ -109,11 +109,11 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
 
         panel3.setBounds(0,0,400,70);
         panel3.setBackground(Color.WHITE);
-        JLabel dp = new JLabel(defaultPic);
+        JLabel dp = new JLabel(defaultPic); // here I Added The Default pic of profile
+
+        // Here I Added The function for Choosing display Picture
         dp.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent ae) {
-
-
                 JFileChooser fileChooser = new JFileChooser();
 
                 fileChooser.setCurrentDirectory(new File(".")); //sets current directory
@@ -133,7 +133,7 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         });
         dp.setBounds(0,0,70,70);
 
-        JLabel name = new JLabel(getName());
+        JLabel name = new JLabel(getName()); // Here I got the name of the person to print on the label
         name.setBounds(70,0,80,50);
 //        name.setText(name);
         name.setFont(new Font("SAN_SERIF", Font.BOLD, 18));
@@ -172,7 +172,7 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         panel5.setBounds(0,70,400,550);
         panel5.setBackground(Color.WHITE);
         panel5.setLayout(new BorderLayout());
-        panel5.add(scrollBar,BorderLayout.CENTER);  // Panel5 used for ChatArea
+        panel5.add(scrollBar,BorderLayout.CENTER);  // Panel5 used for ChatArea,You have to Work with this Panel
 
         panel1.add(panel2);
         panel2.add(panel3);
@@ -256,10 +256,10 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         }
     }
 
-
+// If The Port Is in use in your laptop then try different port which will be same on both server and client class
     public static void main(String[] args) throws IOException{
         Scanner sc = new Scanner(System.in);
-        name = sc.next();
+        name = sc.next(); // I first took a Name from the Client Terminal By User Input
         Socket socket = new Socket("localhost", 2000);
         Clients one = new Clients(socket);
         Thread t1 = new Thread(one);

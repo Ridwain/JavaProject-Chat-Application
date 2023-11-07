@@ -3,9 +3,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.Socket;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Clients extends JFrame implements ActionListener ,KeyListener,Runnable{
+    //static Frame loginFrame;
     JTextField messageField;
     JTextArea chatTextArea;
     JScrollPane scrollBar;
@@ -16,14 +18,14 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
     public String getName(){
         return this.name;
     }
-    Clients(Socket socket){
+    Clients(Socket socket,String userName){
         this.setSize(700,700);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocation(400,300);
         this.setTitle("Messenger");
         this.setLayout(new BorderLayout());
         this.setResizable(false);
-
+        name = userName;
 
         ImageIcon defaultDp = new ImageIcon("man1.png");  //  Default Display picture
         Image dfDP = defaultDp.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
@@ -75,7 +77,7 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         panel1.setBackground(Color.WHITE);
         panel1.setLayout(null);
         panel6.setBounds(0,0,300,70);
-        panel6.setBackground(new Color(178,102,255));
+        panel6.setBackground(new Color(51, 153, 255));
         JLabel chats = new JLabel("Messenger");
         chats.setBounds(0,0,65,60);
         chats.setForeground(Color.BLACK);
@@ -164,7 +166,7 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
 
 
         panel4.setBounds(0,620,400,50);
-        panel4.setBackground(new Color(224,224,224));
+        panel4.setBackground(new Color(51, 153, 255));
         panel4.setLayout(new BorderLayout());
         panel4.add(button,BorderLayout.EAST);
         panel4.add(messageField,BorderLayout.CENTER);
@@ -218,13 +220,6 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode()==KeyEvent.VK_ENTER) {
             String message1 = name + " : "+messageField.getText();
-//            JLabel label = new JLabel(message1);
-//            label.setBounds(0,0,40,50);
-//            chatTextArea.add(label);
-//            chatTextArea.repaint();
-//            chatTextArea.invalidate();
-//            chatTextArea.validate();
-
             chatTextArea.append(message1 + "\n");
             try {
                 writer.write(message1);
@@ -256,15 +251,17 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         }
     }
 
-// If The Port Is in use in your laptop then try different port which will be same on both server and client class
-    public static void main(String[] args) throws IOException{
-        Scanner sc = new Scanner(System.in);
-        name = sc.next(); // I first took a Name from the Client Terminal By User Input
-        Socket socket = new Socket("localhost", 2000);
-        Clients one = new Clients(socket);
-        Thread t1 = new Thread(one);
-        t1.start();
-    }
+    // If The Port Is in use in your laptop then try different port which will be same on both server and client class
+//    public static void main(String[] args) throws IOException{
+//
+//
+////        Scanner sc = new Scanner(System.in);
+////        name = sc.next(); // I first took a Name from the Client Terminal By User Input
+//        Socket socket = new Socket("localhost", 2000);
+//        Clients one = new Clients(socket);
+//        Thread t1 = new Thread(one);
+//        t1.start();
+//    }
 
 
 

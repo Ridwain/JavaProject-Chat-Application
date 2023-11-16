@@ -22,7 +22,7 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         this.setSize(700,700);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocation(400,300);
-        this.setTitle("Messenger");
+        this.setTitle("ChatOn");
         this.setLayout(new BorderLayout());
         this.setResizable(false);
         name = userName;
@@ -78,7 +78,7 @@ public class Clients extends JFrame implements ActionListener ,KeyListener,Runna
         panel1.setLayout(null);
         panel6.setBounds(0,0,300,70);
         panel6.setBackground(new Color(51, 153, 255));
-        JLabel chats = new JLabel("Messenger");
+        JLabel chats = new JLabel("ChatOn");
         chats.setBounds(0,0,65,60);
         chats.setForeground(Color.BLACK);
         chats.setFont(new Font("SAN_SERIF", Font.BOLD, 40));

@@ -32,7 +32,7 @@ class Frame extends JFrame {
     JButton b9 = new JButton(imageIcon1);
 
     JLabel l1 = new JLabel(imageIcon); //this appears at the top of panel1 in launch, signup, login pages
-    JLabel l2 = new JLabel("Walkie-Talkie", JLabel.CENTER); //the name of our software. name it whatever you want
+    JLabel l2 = new JLabel("ChatOn", JLabel.CENTER); //the name of our software. name it whatever you want
     JLabel l3 = new JLabel("SIGN UP", JLabel.CENTER);
     JLabel l4 = new JLabel("Phone", JLabel.LEFT);
     JLabel l5 = new JLabel("Password", JLabel.LEFT);
@@ -58,7 +58,7 @@ class Frame extends JFrame {
 
     Frame() {
         setIconImage(image);
-        setTitle("Walkie-Talkie");
+        setTitle("ChatOn");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(600, 100, 600, 800);
         setResizable(false);
@@ -560,7 +560,7 @@ class Frame extends JFrame {
                                             //THIS IS THE PLACE WHERE IT WILL LAUNCH THE CHAT WINDOW USING THE USERNAME AND AVATAR NAME FROM "temp"
                                             Socket socket =null;
                                             try {
-                                                socket= new Socket("localhost", 2000);
+                                                socket= new Socket("localhost", 2004);
                                             } catch (IOException ex) {
                                                 throw new RuntimeException(ex);
                                             }

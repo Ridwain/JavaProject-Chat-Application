@@ -32,8 +32,13 @@ public class ClientHandler implements Runnable{
 
 
             }
-        }catch (IOException e){
-            e.printStackTrace();
+        }catch (Exception e){
+            clients.remove(this);
+            try {
+                socket.close();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
     }
